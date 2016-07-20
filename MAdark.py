@@ -89,5 +89,56 @@ for i in range(0, len(master_IDs)):
     DEC = np.append(DEC, DEC_comp[idx])
     z_G102 = np.append(z_G102, z_G102_comp[idx])
     z_flag = np.append(z_flag, z_flag_comp[idx])
+    
+master_flux = np.transpose(master_flux)
+OIII_f = master_flux[0]
+OIIIx_f = master_flux[1]
+HeI_f = master_flux[2]
+HeII_f = master_flux[3]
+SII_f = master_flux[4]
+SIII_f = master_flux[5]
+Ha_f = master_flux[6]
+Hb_f = master_flux[7]
+Hg_f = master_flux[8]
+Hd_f = master_flux[9]
+OII_f = master_flux[10]
 
-print(len(RA))
+master_error = np.transpose(master_error)
+OIII_e = master_error[0]
+OIIIx_e = master_error[1]
+HeI_e = master_error[2]
+HeII_e = master_error[3]
+SII_e = master_error[4]
+SIII_e = master_error[5]
+Ha_e = master_error[6]
+Hb_e = master_error[7]
+Hg_e = master_error[8]
+Hd_e = master_error[9]
+OII_e = master_error[10]
+
+t = Table([master_IDs,RA,DEC,z_G102,z_flag,
+           OIII_f,OIII_e,
+           OIIIx_f,OIIIx_e,
+           HeI_f,HeI_e,
+           HeII_f,HeII_e,
+           SII_f,SII_e,
+           SIII_f,SIII_e,
+           Ha_f,Ha_e,
+           Hb_f,Hb_e,
+           Hg_f,Hg_e,
+           Hd_f,Hd_e,
+           OII_f,OII_e],
+    names=('Candels ID','RA','DEC','Z_G102','z_flag',
+           'OIII_f','OIII_e',
+           'OIIIx_f','OIIIx_e',
+           'HeI_f','HeI_e',
+           'HeII_f','HeII_e',
+           'SII_f','SII_e',
+           'SIII_f','SIII_e',
+           'Ha_f','Ha_e',
+           'Hb_f','Hb_e',
+           'Hg_f','Hg_e',
+           'Hd_f','Hd_e',
+           'OII_f','OII_e'))
+os.chdir('/astro/ugrads/apm5587/research')
+t.write('Master_Catalog',format='ascii')
